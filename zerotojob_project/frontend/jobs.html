@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        async function fetchJobs() {
+            const res = await fetch('http://localhost:8080/api/jobs');
+            const jobs = await res.json();
+            const container = document.getElementById('job-list');
+            container.innerHTML = jobs.map(j => `<div><h3>${j.title}</h3><p>${j.company} - ${j.location}</p></div>`).join('');
+        }
+        window.onload = fetchJobs;
+    </script>
+</head>
+<body>
+    <h1>Available Jobs</h1>
+    <div id="job-list"></div>
+</body>
+</html>
